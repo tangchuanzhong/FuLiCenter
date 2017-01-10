@@ -18,9 +18,6 @@ public class BoutiqueBean implements Serializable {
     private String name;
     private String imageurl;
 
-    public BoutiqueBean() {
-    }
-
     public int getId() {
         return id;
     }

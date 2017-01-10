@@ -14,9 +14,6 @@ public class CategoryGroupBean implements Serializable {
     private String name;
     private String imageUrl;
 
-    public CategoryGroupBean() {
-    }
-
     public int getId() {
         return id;
     }

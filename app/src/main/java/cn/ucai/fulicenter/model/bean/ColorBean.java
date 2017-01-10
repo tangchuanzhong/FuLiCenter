@@ -18,9 +18,6 @@ public class ColorBean implements Serializable {
     private String colorCode;
     private String colorImg;
 
-    public ColorBean() {
-    }
-
     public int getCatId() {
         return catId;
     }

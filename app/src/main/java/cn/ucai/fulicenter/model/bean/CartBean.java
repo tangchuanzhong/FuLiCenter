@@ -11,8 +11,6 @@ public class CartBean implements Serializable {
     private boolean isChecked;
     private GoodsDetailsBean goods;
 
-
-
     public int getId() {
         return id;
     }
@@ -74,6 +72,11 @@ public class CartBean implements Serializable {
 
         return getId() == cartBean.getId();
 
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
     }
 
     @Override

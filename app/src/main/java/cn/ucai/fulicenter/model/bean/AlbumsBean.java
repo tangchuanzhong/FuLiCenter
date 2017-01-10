@@ -9,9 +9,6 @@ public class AlbumsBean implements Serializable {
     private String imgUrl;
     private String thumbUrl;
 
-    public AlbumsBean() {
-    }
-
     public int getPid() {
         return pid;
     }

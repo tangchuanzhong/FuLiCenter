@@ -10,9 +10,6 @@ public class MessageBean {
     private boolean success;
     private String msg;
 
-    public MessageBean() {
-    }
-
     public boolean isSuccess() {
         return success;
     }

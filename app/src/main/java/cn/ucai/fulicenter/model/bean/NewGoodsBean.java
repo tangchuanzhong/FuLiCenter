@@ -44,9 +44,6 @@ public class NewGoodsBean implements Serializable {
     private String colorUrl;
     private String addTime;
 
-    public NewGoodsBean() {
-    }
-
     public int getId() {
         return id;
     }

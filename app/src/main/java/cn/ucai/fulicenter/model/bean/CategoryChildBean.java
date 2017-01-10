@@ -16,9 +16,6 @@ public class CategoryChildBean implements Serializable {
     private String name;
     private String imageUrl;
 
-    public CategoryChildBean() {
-    }
-
     public int getId() {
         return id;
     }
