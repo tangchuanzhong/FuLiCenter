@@ -26,6 +26,7 @@ import cn.ucai.fulicenter.model.net.IModelNewGoods;
 import cn.ucai.fulicenter.model.net.ModelNewGoods;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.ConvertUtils;
+import cn.ucai.fulicenter.view.SpaceItemDecoration;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -142,6 +143,7 @@ public class NewGoodsFragment extends Fragment {
                 getResources().getColor(R.color.google_blue)
         );
         gm=new GridLayoutManager(getContext(),I.COLUM_NUM);
+        mRv.addItemDecoration(new SpaceItemDecoration(15));
         mRv.setLayoutManager(gm);
         mRv.setHasFixedSize(true);
         mAdapter=new GoodsAdapter(getContext(),mList);
