@@ -6,11 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -41,7 +43,9 @@ public class NewGoodsFragment extends Fragment {
     public NewGoodsFragment() {
         // Required empty public constructor
     }
-
+    static final int ACTION_DOWNLOAD=0;
+    static final int ACTION_PULL_UP=1;
+    static final int ACTION_PULL_DOWN=2;
     GridLayoutManager gm;
     GoodsAdapter mAdapter;
     ArrayList<NewGoodsBean> mList = new ArrayList<>();
@@ -57,23 +61,75 @@ public class NewGoodsFragment extends Fragment {
         initView();
         model = new ModelNewGoods();
         initData();
+        setListener();
         return view;
     }
 
+    private void setListener() {
+        setPullDownListener();
+        setPullUpListener();
+    }
+
+    private void setPullUpListener() {
+        mRv.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                mAdapter.setDragging(newState==RecyclerView.SCROLL_STATE_DRAGGING);
+                int lastPosition=gm.findLastVisibleItemPosition();
+                if (newState==RecyclerView.SCROLL_STATE_IDLE&&mAdapter.isMore()&&lastPosition==mAdapter.getItemCount()-1);
+                pageId++;
+                downloadList(ACTION_PULL_UP,pageId);
+            }
+        });
+    }
+
+    private void setPullDownListener() {
+        mSrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSrl.setRefreshing(true);
+                mTvRefresh.setVisibility(View.VISIBLE);
+                pageId=1;
+                downloadList(ACTION_PULL_DOWN,pageId);
+            }
+        });
+    }
+
     private void initData() {
+        pageId = 1;
+        downloadList(ACTION_DOWNLOAD, pageId);
+    }
+    private void downloadList(final  int action,int PageId){
         model.downData(getContext(), I.CAT_ID, pageId, new OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
-                if (result!=null&&result.length>0) {
-                    ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
-                    //mList.addAll(list);
-                    mAdapter.initData(list);
+                mAdapter.setMore(result != null && result.length > 0);
+                if (!mAdapter.isMore()) {
+                    if (action == ACTION_PULL_UP) {
+                        mAdapter.setFooter("没有更多数据");
+                    }
+                    return;
+                }
+                mAdapter.setFooter("加载更多数据");
+                ArrayList<NewGoodsBean> list=ConvertUtils.array2List(result);
+                switch (action){
+                    case ACTION_DOWNLOAD:
+                        mAdapter.initData(list);
+                        break;
+                    case ACTION_PULL_DOWN:
+                        mSrl.setRefreshing(false);
+                        mTvRefresh.setVisibility(View.GONE);
+                        mAdapter.initData(list);
+                        break;
+                    case ACTION_PULL_UP:
+                        mAdapter.addData(list);
+                        break;
                 }
             }
-
             @Override
             public void onError(String error) {
-
+                Toast.makeText(getContext(),error,Toast.LENGTH_SHORT).show();
             }
         });
     }
