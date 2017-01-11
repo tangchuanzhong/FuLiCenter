@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //get user info
-                MFGT.startActivity(SplashActivity.this,MainActivity.class);
+                //MFGT.startActivity(SplashActivity.this,MainActivity.class);(多写了一行)
                 MFGT.startActivity(SplashActivity.this, MainActivity.class);
                 MFGT.finish(SplashActivity.this);
             }
