@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.model.bean.NewGoodsBean;
 import cn.ucai.fulicenter.model.utils.ImageLoader;
+import cn.ucai.fulicenter.view.MFGT;
 
 public class GoodsAdapter extends RecyclerView.Adapter {
     private static final int TYPE_FOOTER = 0;
@@ -73,7 +74,7 @@ public class GoodsAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder ParentHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder ParentHolder, final int position) {
         if (getItemViewType(position) == TYPE_FOOTER) {
             FootsViewHolder vh = (FootsViewHolder) ParentHolder;
             vh.mTvFooter.setText(getFooter());
@@ -84,6 +85,12 @@ public class GoodsAdapter extends RecyclerView.Adapter {
         ImageLoader.downloadImg(mContext, vh.mIvGoodsThumb, mList.get(position).getGoodsThumb());
         vh.mTvGoodsName.setText(mList.get(position).getGoodsName());
         vh.mTvGoodsPrice.setText(mList.get(position).getCurrencyPrice());
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MFGT.gotoGoodsDetail(mContext,mList.get(position).getGoodsId());
+            }
+        });
 
     }
 

@@ -145,6 +145,15 @@ public class NewGoodsFragment extends Fragment {
         );
         gm=new GridLayoutManager(getContext(),I.COLUM_NUM);
         mRv.addItemDecoration(new SpaceItemDecoration(15));
+        gm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position==mAdapter.getItemCount()-1){
+                    return 2;
+                }
+                return 1;
+            }
+        });
         mRv.setLayoutManager(gm);
         mRv.setHasFixedSize(true);
         mAdapter=new GoodsAdapter(getContext(),mList);

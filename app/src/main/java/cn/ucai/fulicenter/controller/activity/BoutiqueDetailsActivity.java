@@ -7,9 +7,11 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
+import cn.ucai.fulicenter.view.MFGT;
 
 public class BoutiqueDetailsActivity extends AppCompatActivity {
     @BindView(R.id.ivBack)
@@ -28,5 +30,8 @@ public class BoutiqueDetailsActivity extends AppCompatActivity {
         String title = this.getIntent().getStringExtra(I.Boutique.NAME);
         mTvBoutiqueTitle.setText(title);
     }
-
+    @OnClick(R.id.ivBack)
+    public void onClick(){
+        MFGT.finish(this);
+    }
 }

@@ -1,12 +1,10 @@
 package cn.ucai.fulicenter.controller.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,10 +14,10 @@ import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.I;
 
-import cn.ucai.fulicenter.controller.activity.BoutiqueDetailsActivity;
 import cn.ucai.fulicenter.model.bean.BoutiqueBean;
 import cn.ucai.fulicenter.model.utils.ImageLoader;
 import cn.ucai.fulicenter.view.FooterViewHolder;
+import cn.ucai.fulicenter.view.MFGT;
 
 
 /**
@@ -85,10 +83,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
         vh.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, BoutiqueDetailsActivity.class)
-                        .putExtra(I.NewAndBoutiqueGoods.CAT_ID,mList.get(position).getId())
-                        .putExtra(I.Boutique.NAME,mList.get(position).getTitle()));
-
+                MFGT.gotoBoutiqueDetails(mContext,mList.get(position));
             }
         });
 
