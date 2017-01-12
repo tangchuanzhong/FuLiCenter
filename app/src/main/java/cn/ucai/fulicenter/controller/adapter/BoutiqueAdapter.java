@@ -1,6 +1,7 @@
 package cn.ucai.fulicenter.controller.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +15,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.I;
+
+import cn.ucai.fulicenter.controller.activity.BoutiqueDetailsActivity;
 import cn.ucai.fulicenter.model.bean.BoutiqueBean;
 import cn.ucai.fulicenter.model.utils.ImageLoader;
+import cn.ucai.fulicenter.view.FooterViewHolder;
+
+
+/**
+ * Created by Administrator on 2017/1/11 0011.
+ */
 
 public class BoutiqueAdapter extends RecyclerView.Adapter {
-    private static final int TYPE_FOOTER = 0;
-    private static final int TYPE_BOUTIQUE = 1;
     Context mContext;
     ArrayList<BoutiqueBean> mList;
     String footer;
+    boolean isMore;
 
     public String getFooter() {
         return footer;
@@ -30,18 +38,6 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
 
     public void setFooter(String footer) {
         this.footer = footer;
-        notifyDataSetChanged();
-    }
-
-    boolean isMore;
-    boolean isDragging;
-
-    public boolean isDragging() {
-        return isDragging;
-    }
-
-    public void setDragging(boolean dragging) {
-        isDragging = dragging;
         notifyDataSetChanged();
     }
 
@@ -54,6 +50,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+
     public BoutiqueAdapter(Context context, ArrayList<BoutiqueBean> list) {
         mContext = context;
         mList = new ArrayList<>();
@@ -62,81 +59,76 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_BOUTIQUE) {
-            RecyclerView.ViewHolder holder =
-                    new BoutiqueViewHolder(View.inflate(mContext, R.layout.item_boutique, null));
+        if (viewType == I.TYPE_ITEM) {
+            RecyclerView.ViewHolder holder = new BoutiqueViewHolder(View.inflate(mContext, R.layout.item_boutique, null));
             return holder;
         } else {
-            RecyclerView.ViewHolder holder =
-                    new FootsViewHolder(View.inflate(mContext, R.layout.item_footer, null));
+            RecyclerView.ViewHolder holder = new FooterViewHolder(View.inflate(mContext, R.layout.item_footer, null));
             return holder;
         }
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder ParentHolder, int position) {
-        if (getItemViewType(position)==TYPE_FOOTER){
-            FootsViewHolder vh= (FootsViewHolder) ParentHolder;
-            vh.mTvfooter.setText(getFooter());
+    public void onBindViewHolder(RecyclerView.ViewHolder ParentHolder, final int position) {
+        if (getItemViewType(position) == I.TYPE_FOOTER) {
+            FooterViewHolder vh = (FooterViewHolder) ParentHolder;
+            vh.tvFooter.setText(getFooter());
             return;
         }
 
-        BoutiqueViewHolder vh= (BoutiqueViewHolder) ParentHolder;
-        ImageLoader.downloadImg(mContext,vh.mIvBoutiqueImg,mList.get(position).getImageurl());
-        vh.mTvBoutiqueName.setText(mList.get(position).getName());
-        vh.mTvBoutiqueTitle.setText(mList.get(position).getTitle());
-        vh.mTvBoutiqueDescription.setText(mList.get(position).getDescription());
+        BoutiqueViewHolder vh = (BoutiqueViewHolder) ParentHolder;
+        ImageLoader.downloadImg(mContext, vh.mivBoutiqueImg, mList.get(position).getImageurl());
+        vh.mtvBoutiqueName.setText(mList.get(position).getName());
+        vh.mtvBoutiqueTitle.setText(mList.get(position).getTitle());
+        vh.mtvBoutiqueDescription.setText(mList.get(position).getDescription());
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, BoutiqueDetailsActivity.class).putExtra(
+                        I.NewAndBoutiqueGoods.CAT_ID
+                        , mList.get(position).getId()));
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return mList.size()+1;
+        return mList.size() + 1;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position==getItemCount()-1){
-            return TYPE_FOOTER;
+        if (position == getItemCount() - 1) {
+            return I.TYPE_FOOTER;
         }
-        return TYPE_BOUTIQUE;
+        return I.TYPE_ITEM;
     }
-    public void initData(ArrayList<BoutiqueBean> list){
-        if (mList!=null){
+
+    public void initData(ArrayList<BoutiqueBean> list) {
+        if (mList != null) {
             mList.clear();
         }
         mList.addAll(list);
         notifyDataSetChanged();
     }
-    public void addData(ArrayList<BoutiqueBean> list){
+
+    public void addData(ArrayList<BoutiqueBean> list) {
         mList.addAll(list);
         notifyDataSetChanged();
     }
 
     static class BoutiqueViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ivBoutiqueImg)
-        ImageView mIvBoutiqueImg;
+        ImageView mivBoutiqueImg;
         @BindView(R.id.tvBoutiqueTitle)
-        TextView mTvBoutiqueTitle;
+        TextView mtvBoutiqueTitle;
         @BindView(R.id.tvBoutiqueName)
-        TextView mTvBoutiqueName;
+        TextView mtvBoutiqueName;
         @BindView(R.id.tvBoutiqueDescription)
-        TextView mTvBoutiqueDescription;
-        @BindView(R.id.layout_boutique_item)
-        RelativeLayout layoutBoutiqueItem;
+        TextView mtvBoutiqueDescription;
 
         BoutiqueViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-        }
-    }
-
-    static class FootsViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tvfooter)
-        TextView mTvfooter;
-        @BindView(R.id.layout_footer)
-        RelativeLayout layoutFooter;
-
-        FootsViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
