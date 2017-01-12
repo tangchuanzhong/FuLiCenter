@@ -1,27 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_detailsBoutique"
+    android:id="@+id/activity_boutique_child"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+    -
+
     <RelativeLayout
-        android:background="@color/good_detail_title_bg"
+        android:id="@+id/rl"
         android:layout_width="match_parent"
-        android:layout_height="35dp">
+        android:layout_height="35dp"
+        android:background="#ff4d00">
+
         <ImageView
-            android:id="@+id/back"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/back"/>
+            android:id="@+id/ivBack"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back" />
+
         <TextView
+            android:id="@+id/tvBoutiqueTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/back"
-            android:gravity="center_vertical"
-            android:text="title"/>
+            android:layout_toRightOf="@id/ivBack"
+            android:gravity="center"
+            android:text="tile"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </RelativeLayout>
+
     <FrameLayout
-        android:id="@+id/fragment_container2"
+        android:id="@+id/fragment_container1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl" />
 </RelativeLayout>

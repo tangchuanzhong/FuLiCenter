@@ -19,8 +19,10 @@ public class BoutiqueDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boutique_details);
+
+
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container2,new NewGoodsFragment())
+                .add(R.id.fragment_container1,new NewGoodsFragment())
                 .commit();
     }
 }

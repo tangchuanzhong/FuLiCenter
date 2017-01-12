@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,6 +102,7 @@ public class NewGoodsFragment extends Fragment {
     }
     private void downloadList(final  int action,int PageId){
         int catId=getActivity().getIntent().getIntExtra(I.NewAndBoutiqueGoods.CAT_ID,I.CAT_ID);
+
         model.downData(getContext(), catId, pageId, new OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
@@ -132,6 +134,7 @@ public class NewGoodsFragment extends Fragment {
                 Toast.makeText(getContext(),error,Toast.LENGTH_SHORT).show();
             }
         });
+        Log.i("main", catId + "");
     }
 
     private void initView() {

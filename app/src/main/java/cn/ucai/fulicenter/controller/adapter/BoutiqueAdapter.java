@@ -81,12 +81,12 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
         vh.mtvBoutiqueName.setText(mList.get(position).getName());
         vh.mtvBoutiqueTitle.setText(mList.get(position).getTitle());
         vh.mtvBoutiqueDescription.setText(mList.get(position).getDescription());
+
         vh.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, BoutiqueDetailsActivity.class).putExtra(
-                        I.NewAndBoutiqueGoods.CAT_ID
-                        , mList.get(position).getId()));
+                mContext.startActivity(new Intent(mContext, BoutiqueDetailsActivity.class)
+                        .putExtra(I.NewAndBoutiqueGoods.CAT_ID,mList.get(position).getId()));
             }
         });
 
