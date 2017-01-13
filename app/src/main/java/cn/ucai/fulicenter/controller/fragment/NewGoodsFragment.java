@@ -64,6 +64,9 @@ public class NewGoodsFragment extends Fragment {
         setListener();
         return view;
     }
+    public void sortGoods(int sortBy){
+        mAdapter.sortGoods(sortBy);
+    }
 
     private void setListener() {
         setPullDownListener();

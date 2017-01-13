@@ -1,6 +1,8 @@
 package cn.ucai.fulicenter.controller.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,13 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.application.I;
+import cn.ucai.fulicenter.controller.activity.BoutiqueDetailsActivity;
+import cn.ucai.fulicenter.controller.activity.CategoryDetailsActivity;
 import cn.ucai.fulicenter.model.bean.CategoryChildBean;
 import cn.ucai.fulicenter.model.bean.CategoryGroupBean;
 import cn.ucai.fulicenter.model.utils.ImageLoader;
+import cn.ucai.fulicenter.view.MFGT;
 
 /**
  * Created by Administrator on 2017/1/13 0013.
@@ -97,7 +103,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View view, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View view, ViewGroup parent) {
         ChildViewHolder vh = null;
         if (view == null) {
             view = View.inflate(mContext, R.layout.item_category_child, null);
@@ -108,6 +114,12 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         }
         ImageLoader.downloadImg(mContext, vh.ivCategoryChildThumb, getChild(groupPosition, childPosition).getImageUrl());
         vh.tvCategoryChildNaem.setText(getChild(groupPosition, childPosition).getName());
+        vh.layoutCategoryChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MFGT.gotoCategoryDetails(mContext,mChildBean.get(groupPosition).get(childPosition).getId());
+            }
+        });
         return view;
     }
 
