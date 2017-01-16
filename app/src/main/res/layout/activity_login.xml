@@ -86,6 +86,7 @@
                 android:background="#f00"
                 android:hint="密码"
                 android:paddingLeft="10dp"
+                android:inputType="textPassword"
                 android:singleLine="true"
                 android:textColor="#000"
                 android:textSize="18sp" />
