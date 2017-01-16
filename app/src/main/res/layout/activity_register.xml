@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_register"
+    android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fragment_bg"
@@ -29,7 +29,6 @@
             android:text="账户注册"
             android:textColor="#000"
             android:textSize="20sp" />
-
     </RelativeLayout>
 
     <LinearLayout
@@ -48,9 +47,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:background="@null"
+                android:background="#f00"
                 android:drawableRight="@drawable/icon_account"
-                android:hint="用户名:"
+                android:hint="用户名"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
@@ -60,7 +59,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="2dp"
             android:background="#fff">
 
             <EditText
@@ -68,11 +67,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:background="@null"
+                android:background="#f00"
                 android:drawableRight="@drawable/icon_account"
-                android:hint="昵称:"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
+                android:hint="昵称"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:singleLine="true"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -80,21 +79,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="2dp"
             android:background="#fff">
-
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:background="@null"
+                android:background="#f00"
                 android:drawableRight="@drawable/icon_pwd"
-                android:hint="密码:"
-                android:inputType="textPassword"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
+                android:hint="密码"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:singleLine="true"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -102,7 +99,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="2dp"
             android:background="#fff">
 
             <EditText
@@ -110,12 +107,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:background="@null"
+                android:background="#f00"
                 android:drawableRight="@drawable/icon_pwd"
-                android:hint="确认密码:"
-                android:inputType="textPassword"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
+                android:hint="确认密码"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:singleLine="true"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -124,7 +120,7 @@
             android:id="@+id/layout_user_avatar"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="2dp"
             android:background="#fff">
 
             <ImageView
@@ -133,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dip"
+                android:layout_marginRight="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/contactlogo" />
 
@@ -143,9 +139,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:background="@null"
-                android:hint="头像:"
-                android:paddingLeft="10dip"
+                android:background="#f00"
+                android:hint="头像"
+                android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:textSize="18sp" />
 
@@ -161,18 +157,16 @@
 
             <Button
                 android:id="@+id/btnRegister"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_weight="2"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/tb_btn_login_orange_normal"
                 android:paddingBottom="7dp"
-                android:paddingTop="7dp"
                 android:text="免费注册"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
