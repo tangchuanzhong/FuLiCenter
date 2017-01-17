@@ -1,11 +1,8 @@
-package cn.ucai.fulicenter.model.bean;
+package cn.ucai.fulicenter.model.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import cn.ucai.fulicenter.application.I;
-import cn.ucai.fulicenter.model.dao.UserDao;
 
 /**
  * Created by Administrator on 2017/1/17 0017.
