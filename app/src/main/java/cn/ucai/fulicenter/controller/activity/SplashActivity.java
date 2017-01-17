@@ -9,7 +9,7 @@ import cn.ucai.fulicenter.application.FuLiCenterApplication;
 import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.dao.UserDao;
 import cn.ucai.fulicenter.model.utils.L;
-import cn.ucai.fulicenter.model.utils.SharePrefrenceUtils;
+import cn.ucai.fulicenter.model.utils.SharedPreferenceUtils;
 import cn.ucai.fulicenter.view.MFGT;
 
 public class SplashActivity extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //get user info
-                String username= SharePrefrenceUtils.getInstance(SplashActivity.this).getUser();
+                String username= SharedPreferenceUtils.getInstance(SplashActivity.this).getUser();
                 if (username!=null){
                     User user=UserDao.getInstance().getUser(username);
                     L.e(TAG,"user="+user);

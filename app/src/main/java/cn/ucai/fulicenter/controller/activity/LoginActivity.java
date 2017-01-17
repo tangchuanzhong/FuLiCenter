@@ -23,7 +23,7 @@ import cn.ucai.fulicenter.model.net.ModelUser;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.ResultUtils;
-import cn.ucai.fulicenter.model.utils.SharePrefrenceUtils;
+import cn.ucai.fulicenter.model.utils.SharedPreferenceUtils;
 import cn.ucai.fulicenter.view.MFGT;
 
 public class LoginActivity extends AppCompatActivity {
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                     boolean saveUser= UserDao.getInstance().saveUser(user);
                                     Log.e("main","saveUser="+saveUser);
                                     if (saveUser){
-                                        SharePrefrenceUtils.getInstance(LoginActivity.this).saveUser(user.getMuserName());
+                                        SharedPreferenceUtils.getInstance(LoginActivity.this).saveUser(user.getMuserName());
                                         FuLiCenterApplication.setUser(user);
                                     }
                                     MFGT.finish(LoginActivity.this);
