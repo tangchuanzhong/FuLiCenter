@@ -1,14 +1,8 @@
 package cn.ucai.fulicenter.controller.activity;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,15 +12,11 @@ import butterknife.OnClick;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.FuLiCenterApplication;
 import cn.ucai.fulicenter.application.I;
-import cn.ucai.fulicenter.model.bean.Result;
 import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.net.IModelUser;
-import cn.ucai.fulicenter.model.net.ModelUser;
-import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.DisplayUtils;
 import cn.ucai.fulicenter.model.utils.ImageLoader;
-import cn.ucai.fulicenter.model.utils.ResultUtils;
 import cn.ucai.fulicenter.model.utils.SharedPreferenceUtils;
 import cn.ucai.fulicenter.view.MFGT;
 
@@ -81,8 +71,13 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK&&requestCode==I.REQUEST_CODE_NICK){
+        if (resultCode == RESULT_OK && requestCode == I.REQUEST_CODE_NICK) {
             tvUserProfileNick.setText(FuLiCenterApplication.getUser().getMuserNick());
         }
+    }
+
+    @OnClick(R.id.layout_user_profile_username)
+    public void onClickUserName() {
+        CommonUtils.showLongToast(R.string.username_connot_be_modify);
     }
 }
