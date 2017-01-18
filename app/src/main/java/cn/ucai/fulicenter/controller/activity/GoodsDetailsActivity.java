@@ -139,6 +139,7 @@ public class GoodsDetailsActivity extends AppCompatActivity {
     }
 
     private void initCollectStatus() {
+        //ivGoodCollect.setEnabled(false);
         User user = FuLiCenterApplication.getUser();
         if (user != null) {
             model.isCollect(this, goodsId, user.getMuserName(), new OnCompleteListener<MessageBean>() {
@@ -171,6 +172,7 @@ public class GoodsDetailsActivity extends AppCompatActivity {
 
     @OnClick(R.id.iv_good_collect)
     public void setCollectListener() {
+        //ivGoodCollect.setEnabled(false);
         User user=FuLiCenterApplication.getUser();
         if (user!=null){
             setCollect(user);
@@ -195,7 +197,7 @@ public class GoodsDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(String error) {
-
+                        //ivGoodCollect.setEnabled(true);
                     }
                 });
     }
