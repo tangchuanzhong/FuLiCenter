@@ -18,6 +18,7 @@ import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.model.bean.Result;
 import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.net.IModelUser;
+import cn.ucai.fulicenter.model.net.ModelUser;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.DisplayUtils;
@@ -100,6 +101,7 @@ public class SettingsActivity extends AppCompatActivity {
         file = new File(String.valueOf(OnSetAvatarListener.getAvatarFile(this,
                 I.AVATAR_TYPE_USER_PATH + "/" + user.getMuserName() + user.getMavatarSuffix())));
         //file=new File()
+        model=new ModelUser();
         model.uploadAvatar(this,
                 user.getMuserName(),
                 file,
