@@ -61,11 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.fragment_container,mNewGoodsFragment)
                 .add(R.id.fragment_container,mBoutiqueFragment)
                 .add(R.id.fragment_container,mCategoryFragment)
-                .add(R.id.fragment_container,mPersonalCenterFragment)
                 .show(mNewGoodsFragment)
                 .hide(mBoutiqueFragment)
                 .hide(mCategoryFragment)
-                .hide(mPersonalCenterFragment)
                 .commit();
     }
 
