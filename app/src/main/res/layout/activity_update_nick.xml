@@ -18,7 +18,7 @@
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f00"
+        android:background="@color/white"
         android:paddingLeft="10dip"
         android:textSize="18sp" />
     <Button

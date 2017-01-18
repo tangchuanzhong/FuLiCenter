@@ -225,7 +225,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="1dp"
-                android:background="#d1b4ad"
                 android:cacheColorHint="#ffffff"
                 android:numColumns="5"
                 android:paddingBottom="10dp"
