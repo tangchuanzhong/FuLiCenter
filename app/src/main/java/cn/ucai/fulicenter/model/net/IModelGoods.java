@@ -11,4 +11,5 @@ import cn.ucai.fulicenter.model.bean.GoodsDetailsBean;
 
 public interface IModelGoods {
     void downData(Context context,int goodsId, OnCompleteListener<GoodsDetailsBean> listener);
+
 }
