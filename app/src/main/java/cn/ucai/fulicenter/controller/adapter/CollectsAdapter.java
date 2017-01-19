@@ -115,8 +115,8 @@ public class CollectsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public void remove(CollectBean bean) {
-        mList.remove(bean);
+    public void removeItem(int goodsId) {
+        mList.remove(new CollectBean(goodsId));
         notifyDataSetChanged();
     }
 

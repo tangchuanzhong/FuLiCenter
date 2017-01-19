@@ -61,13 +61,14 @@ public class CollectsActivity extends AppCompatActivity {
         initView();
         initData();
         setListener();
+        setReceiverListener();
     }
 
     private void setListener() {
         setPullDownListener();
         setPullUpListener();
-        IntentFilter filter = new IntentFilter("update_collect");
-        registerReceiver(mReceiver,filter);
+//        IntentFilter filter = new IntentFilter("update_collect");
+//        registerReceiver(mReceiver,filter);
     }
 
     private void setPullUpListener() {
@@ -159,17 +160,20 @@ public class CollectsActivity extends AppCompatActivity {
         rv.setAdapter(mAdapter);
         rv.addItemDecoration(new SpaceItemDecoration(12));
     }
+    private void setReceiverListener(){
+        mReceiver = new updateCollectReceiver();
+        IntentFilter filter=new IntentFilter("update_collect");
+        registerReceiver(mReceiver,filter);
+    }
 
-    updateCollectReceiver mReceiver;
+    updateCollectReceiver mReceiver ;
     class updateCollectReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             int goodsId = intent.getIntExtra(I.Collect.GOODS_ID,0);
             if(goodsId!=0){
-                CollectBean bean = new CollectBean();
-                bean.setGoodsId(goodsId);
-                mAdapter.remove(bean);
+                mAdapter.removeItem(goodsId);
             }
         }
     }
