@@ -5,9 +5,12 @@ import android.content.Context;
 import java.io.File;
 
 import cn.ucai.fulicenter.application.I;
+import cn.ucai.fulicenter.model.bean.CollectBean;
 import cn.ucai.fulicenter.model.bean.MessageBean;
 import cn.ucai.fulicenter.model.utils.MD5;
 import cn.ucai.fulicenter.model.utils.OkHttpUtils;
+
+import static cn.ucai.fulicenter.application.I.Property.goodsId;
 
 /**
  * Created by Administrator on 2017/1/16 0016.
@@ -63,6 +66,27 @@ public class ModelUser implements IModelUser {
         OkHttpUtils<MessageBean> utils=new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_FIND_COLLECT_COUNT)
                 .addParam(I.Collect.USER_NAME,username)
+                .targetClass(MessageBean.class)
+                .execute(listener);
+    }
+
+    @Override
+    public void downCollects(Context context, String username, int pageId, OnCompleteListener<CollectBean[]> listener) {
+        OkHttpUtils<CollectBean[]> utils=new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_COLLECTS)
+                .addParam(I.Collect.USER_NAME,username)
+                .addParam(I.PAGE_ID, String.valueOf(pageId))
+                .addParam(I.PAGE_SIZE, String.valueOf(I.PAGE_SIZE_DEFAULT))
+                .targetClass(CollectBean[].class)
+                .execute(listener);
+    }
+
+    @Override
+    public void deleteCollect(Context context, String username, int goodsId, OnCompleteListener<MessageBean> listener) {
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_DELETE_COLLECT)
+                .addParam(I.Collect.USER_NAME,username)
+                .addParam(I.Collect.GOODS_ID,String.valueOf(goodsId))
                 .targetClass(MessageBean.class)
                 .execute(listener);
     }

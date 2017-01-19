@@ -75,15 +75,16 @@ public class PersonalCenterFragment extends Fragment {
         tvUserName.setText(user.getMuserNick());
         loadCollectCount("0");
     }
-    private void getCollectCount(){
-        model=new ModelUser();
+
+    private void getCollectCount() {
+        model = new ModelUser();
         model.collectCount(getContext(), FuLiCenterApplication.getUser().getMuserName(),
                 new OnCompleteListener<MessageBean>() {
                     @Override
                     public void onSuccess(MessageBean result) {
-                        if (result!=null&&result.isSuccess()){
+                        if (result != null && result.isSuccess()) {
                             loadCollectCount(result.getMsg());
-                        }else {
+                        } else {
                             loadCollectCount("0");
                         }
                     }
@@ -102,6 +103,11 @@ public class PersonalCenterFragment extends Fragment {
     @OnClick({R.id.tv_center_settings, R.id.center_user_info})
     public void setting() {
         MFGT.gotoSetting(getActivity());
+    }
+
+    @OnClick(R.id.layout_center_collect)
+    public void onClick() {
+        MFGT.gotoCollect(getActivity());
     }
 }
 
