@@ -177,10 +177,10 @@ public class GoodsDetailsActivity extends AppCompatActivity {
     @OnClick(R.id.iv_good_collect)
     public void setCollectListener() {
         //ivGoodCollect.setEnabled(false);
-        User user=FuLiCenterApplication.getUser();
-        if (user!=null){
+        User user = FuLiCenterApplication.getUser();
+        if (user != null) {
             setCollect(user);
-        }else {
+        } else {
             MFGT.gotoLogin(this);
         }
     }
@@ -192,12 +192,12 @@ public class GoodsDetailsActivity extends AppCompatActivity {
                 new OnCompleteListener<MessageBean>() {
                     @Override
                     public void onSuccess(MessageBean result) {
-                        if (result!=null&&result.isSuccess()){
-                            isCollect=!isCollect;
+                        if (result != null && result.isSuccess()) {
+                            isCollect = !isCollect;
                             setCollectStatus();
                             CommonUtils.showShortToast(result.getMsg());
                             sendBroadcast(new Intent("update_collect").
-                                    putExtra(I.Collect.GOODS_ID,goodsId));
+                                    putExtra(I.Collect.GOODS_ID, goodsId));
                         }
                     }
 
@@ -207,23 +207,28 @@ public class GoodsDetailsActivity extends AppCompatActivity {
                     }
                 });
     }
+
     @OnClick(R.id.iv_good_cart)
-    public void addCart(){
-        User user=FuLiCenterApplication.getUser();
-        userModel=new ModelUser();
-        userModel.updateCart(this, I.ACTION_CART_ADD, user.getMuserName()
-                , goodsId, 1, 0, new OnCompleteListener<MessageBean>() {
-                    @Override
-                    public void onSuccess(MessageBean result) {
-                        if (result!=null&&result.isSuccess()){
-                            CommonUtils.showLongToast(R.string.add_goods_success);
+    public void addCart() {
+        User user = FuLiCenterApplication.getUser();
+        if (user != null) {
+            userModel = new ModelUser();
+            userModel.updateCart(this, I.ACTION_CART_ADD, user.getMuserName()
+                    , goodsId, 1, 0, new OnCompleteListener<MessageBean>() {
+                        @Override
+                        public void onSuccess(MessageBean result) {
+                            if (result != null && result.isSuccess()) {
+                                CommonUtils.showLongToast(R.string.add_goods_success);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError(String error) {
+                        @Override
+                        public void onError(String error) {
 
-                    }
-                });
+                        }
+                    });
+        }else {
+            MFGT.gotoLogin(this);
+        }
     }
 }
